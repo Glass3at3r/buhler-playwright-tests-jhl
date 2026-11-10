@@ -32,9 +32,12 @@ Full list with priorities and rationale: [docs/test-scenarios.md](docs/test-scen
 |---|---|---|---|
 | P1 | Successful login | positive | `tests/login.spec.ts` |
 | P1 | Login with invalid data (data-driven) | negative | `tests/login.spec.ts` |
-| P1 | Add product to cart | positive | <!-- TODO --> |
+| P1 | Add product to cart | positive | `tests/inventory.spec.ts` |
 | P1 | Complete checkout | positive | <!-- TODO --> |
 | P2 | Checkout with missing data (data-driven) | negative | <!-- TODO --> |
+| P2 | Removing a product from cart | positive | `tests/cart.spec.ts` |
+| P3 | Sorting of products (by name/by price) | `tests/inventory.spec.ts` |
+| P3 | Logout | <!-- TODO --> |
 
 <!-- TODO: keep this table in sync with docs/test-scenarios.md. -->
 

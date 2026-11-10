@@ -7,7 +7,7 @@ export class CheckoutPage{
     readonly postalCode: Locator;
     readonly continueButton: Locator;
     readonly cancelButton: Locator;
-    readonly error: Locator;
+    readonly errorMessage: Locator;
 
     constructor(private readonly page: Page){
         this.firstName = page.getByTestId('firstName');
@@ -15,12 +15,20 @@ export class CheckoutPage{
         this.postalCode = page.getByTestId('postalCode');
         this.continueButton = page.getByTestId('continue');
         this.cancelButton = page.getByTestId('cancel');
-        this.error = page.getByTestId('error')
+        this.errorMessage = page.getByTestId('error')
     }
 
     async fillCheckoutForm(client: Pick<CheckoutInfo, 'firstName' | 'lastName' | 'postalCode'>): Promise<void> {
         await this.firstName.fill(client.firstName);
         await this.lastName.fill(client.lastName);
         await this.postalCode.fill(client.postalCode);
+    }
+
+    async cancelOrder(): Promise<void> {
+        await this.cancelButton.click();
+    }
+
+    async continueToCheckOut():Promise<void> {
+        await this.continueButton.click();
     }
 }

@@ -13,7 +13,7 @@ Test scenarios are sorted by test priority from high to low.
 | P1        | Complete check-out (end-to-end happy day scenario) | positive |
 | P2        | Checkout with missing data(name, surname, post office number) | negative, data-driven |
 | P2        | Removing of product from the cart | positive |
-| P3        | Sorting pro products (by name, by price) | positive |
+| P3        | Sorting of products (by name, by price) | positive |
 | P3        | Logout successful | positive |
 
 

@@ -4,6 +4,7 @@ import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import { standardUser } from '../test-data/users';
+import { backpack } from '../test-data/products';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -13,6 +14,7 @@ type Fixtures = {
     
     /** Inventory page is opened by already logged in standard_user */
     loggedInInventory: InventoryPage;
+    cartWithBackpack: CartPage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -26,7 +28,14 @@ export const test = base.extend<Fixtures>({
         await loginPage.login(standardUser);
         await use(inventoryPage);
         //Teardown: Playwright creates new context for every test, so cookies and localStorage are cleansed automatically.
+    },
+
+    cartWithBackpack: async({ loggedInInventory, cartPage }, use) => {
+        await loggedInInventory.addToCart(backpack);
+        await loggedInInventory.goToCart();
+        await use(cartPage);
     }
+
 });
 
 export { expect } from '@playwright/test';
