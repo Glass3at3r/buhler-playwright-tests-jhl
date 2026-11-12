@@ -28,16 +28,16 @@ written in **Playwright** and **TypeScript**.
 
 Full list with priorities and rationale: [docs/test-scenarios.md](docs/test-scenarios.md)
 
-| Priority | Scenario | Type | Implemented in |
-|---|---|---|---|
-| P1 | Successful login | positive | `tests/login.spec.ts` |
-| P1 | Login with invalid data (data-driven) | negative | `tests/login.spec.ts` |
-| P1 | Add product to cart | positive | `tests/inventory.spec.ts` |
-| P1 | Complete checkout | positive | <!-- TODO --> |
-| P2 | Checkout with missing data (data-driven) | negative | <!-- TODO --> |
-| P2 | Removing a product from cart | positive | `tests/cart.spec.ts` |
-| P3 | Sorting of products (by name/by price) | `tests/inventory.spec.ts` |
-| P3 | Logout | <!-- TODO --> |
+| Priority | Scenario                                 | Type     | Implemented in            |
+| -------- | ---------------------------------------- | -------- | ------------------------- |
+| P1       | Successful login                         | positive | `tests/login.spec.ts`     |
+| P1       | Login with invalid data (data-driven)    | negative | `tests/login.spec.ts`     |
+| P1       | Add product to cart                      | positive | `tests/inventory.spec.ts` |
+| P1       | Complete checkout                        | positive | `tests/checkout.spec.ts`  |
+| P2       | Checkout with missing data (data-driven) | negative | `tests/checkout.spec.ts`  |
+| P2       | Removing a product from cart             | positive | `tests/cart.spec.ts`      |
+| P3       | Sorting of products (by name/by price)   | positive | `tests/inventory.spec.ts` |
+| P3       | Logout                                   | positive | `tests/logout.spec.ts`    |
 
 <!-- TODO: keep this table in sync with docs/test-scenarios.md. -->
 
@@ -67,14 +67,14 @@ npx playwright install chromium
 
 ## Running the tests
 
-| Command | Description |
-|---|---|
-| `npm test` | Run all tests (headless) |
-| `npm run test:headed` | Run with a visible browser |
-| `npm run test:ui` | Run in Playwright UI mode |
-| `npx playwright test login` | Run a single spec file |
-| `npm run report` | Open the HTML report |
-| `npm run typecheck` | Check TypeScript types |
+| Command                     | Description                |
+| --------------------------- | -------------------------- |
+| `npm test`                  | Run all tests (headless)   |
+| `npm run test:headed`       | Run with a visible browser |
+| `npm run test:ui`           | Run in Playwright UI mode  |
+| `npx playwright test login` | Run a single spec file     |
+| `npm run report`            | Open the HTML report       |
+| `npm run typecheck`         | Check TypeScript types     |
 
 ## CI/CD
 
