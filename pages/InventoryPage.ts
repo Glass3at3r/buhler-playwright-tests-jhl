@@ -25,6 +25,22 @@ export class InventoryPage {
       .click();
   }
 
+  async removeFromCart(product: Pick<Product, 'name'>): Promise<void> {
+    await this.inventoryItem
+      .filter({ hasText: product.name })
+      .getByRole('button', { name: 'Remove' })
+      .click();
+  }
+
+  /** Returns the "Add to cart" / "Remove" button of the product (for state assertions). */
+  productButton(product: Pick<Product, 'name'>, name: 'Add to cart' | 'Remove'): Locator {
+    return this.inventoryItem.filter({ hasText: product.name }).getByRole('button', { name });
+  }
+
+  async openProductDetail(product: Pick<Product, 'name'>): Promise<void> {
+    await this.inventoryItemName.filter({ hasText: product.name }).click();
+  }
+
   async sortProductBy(sortCase: Pick<SortCase, 'option'>): Promise<void> {
     await this.productSortContainer.selectOption(sortCase.option);
   }

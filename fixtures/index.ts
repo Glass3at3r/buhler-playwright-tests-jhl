@@ -1,6 +1,7 @@
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
+import { ProductDetailPage } from '../pages/ProductDetailPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import { standardUser } from '../test-data/users';
@@ -16,6 +17,7 @@ type Fixtures = {
   sideMenu: SideMenuComponent;
   inventoryPage: InventoryPage;
   cartPage: CartPage;
+  productDetailPage: ProductDetailPage;
   checkoutPage: CheckoutPage;
   checkoutOverviewPage: CheckoutOverviewPage;
   checkoutCompletePage: CheckoutCompletePage;
@@ -41,6 +43,9 @@ export const test = base.extend<Fixtures>({
   },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
+  },
+  productDetailPage: async ({ page }, use) => {
+    await use(new ProductDetailPage(page));
   },
   checkoutPage: async ({ page }, use) => {
     await use(new CheckoutPage(page));

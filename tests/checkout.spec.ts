@@ -1,4 +1,5 @@
 import { test, expect } from '../fixtures/index';
+import { backpack } from '../test-data/products';
 import { checkoutNegativeCases, ORDER_CONFIRMATION, validCustomer } from '../test-data/checkout';
 
 test.describe('Checkout page test cases', () => {
@@ -7,7 +8,7 @@ test.describe('Checkout page test cases', () => {
    * Test will fill the checkout form with missing mandatory parameters(firstname, lastname, postalCode)
    */
   for (const c of checkoutNegativeCases) {
-    test(`Checkout fails with ${c.name}`, async ({ cartWithBackpack, checkoutPage }) => {
+    test(`TS-06: Checkout fails with ${c.name}`, async ({ cartWithBackpack, checkoutPage }) => {
       await cartWithBackpack.proceedToCheckout();
       await expect(checkoutPage.firstName).toBeVisible();
       await checkoutPage.fillCheckoutForm(c.customer);
@@ -16,7 +17,7 @@ test.describe('Checkout page test cases', () => {
     });
   }
 
-  test('Complete checkout', async ({
+  test('TS-04: Complete checkout', async ({
     checkoutPageOpened,
     checkoutOverviewPage,
     checkoutCompletePage,
@@ -28,5 +29,38 @@ test.describe('Checkout page test cases', () => {
     await checkoutOverviewPage.finishOrder();
     await expect(checkoutCompletePage.completeContainer).toBeVisible();
     await expect(checkoutCompletePage.completeHeader).toHaveText(ORDER_CONFIRMATION);
+  });
+
+  test('TS-05: Order summary shows correct item total, tax and total', async ({
+    checkoutPageOpened,
+    checkoutOverviewPage,
+  }) => {
+    await checkoutPageOpened.fillCheckoutForm(validCustomer);
+    await checkoutPageOpened.continueToCheckOut();
+    await expect(checkoutOverviewPage.checkoutSummaryContainer).toBeVisible();
+    const subtotal = await checkoutOverviewPage.getSubtotal();
+    const tax = await checkoutOverviewPage.getTax();
+    const total = await checkoutOverviewPage.getTotal();
+    expect(subtotal).toBe(backpack.price);
+    expect(tax).toBeGreaterThan(0);
+    // toBeCloseTo avoids floating point errors (e.g. 29.99 + 2.4)
+    expect(subtotal + tax).toBeCloseTo(total, 2);
+  });
+
+  test('TS-10: Cart is empty and shop is displayed after completed order', async ({
+    checkoutPageOpened,
+    checkoutOverviewPage,
+    checkoutCompletePage,
+    inventoryPage,
+    header,
+  }) => {
+    await checkoutPageOpened.fillCheckoutForm(validCustomer);
+    await checkoutPageOpened.continueToCheckOut();
+    await checkoutOverviewPage.finishOrder();
+    await expect(checkoutCompletePage.completeHeader).toHaveText(ORDER_CONFIRMATION);
+    await expect(header.cartBadge).toHaveCount(0);
+    await checkoutCompletePage.clickOnBackButton();
+    await expect(inventoryPage.inventoryContainer).toBeVisible();
+    await expect(header.cartBadge).toHaveCount(0);
   });
 });
