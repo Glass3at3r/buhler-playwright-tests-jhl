@@ -1,41 +1,41 @@
 {
-    "name": "buhler-playwright-tests-jhl",
-    "version": "1.0.0",
-    "description": "Automated UI tests for https://www.saucedemo.com (Playwright + TypeScript)",
-    "scripts": {
-        "test": "playwright test",
-        "test:headed": "playwright test --headed",
-        "test:ui": "playwright test --ui",
-        "report": "playwright show-report",
-        "typecheck": "tsc --noEmit"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Glass3at3r/buhler-playwright-tests-jhl.git"
-    },
-    "keywords": [
-        "playwright",
-        "typescript",
-        "test-automation",
-        "saucedemo"
-    ],
-    "author": "Jan Hlavacek",
-    "license": "ISC",
-    "type": "commonjs",
-    "bugs": {
-        "url": "https://github.com/Glass3at3r/buhler-playwright-tests-jhl/issues"
-    },
-    "homepage": "https://github.com/Glass3at3r/buhler-playwright-tests-jhl#readme",
-    "devDependencies": {
-        "@playwright/test": "^1.65.0",
-        "@types/node": "^26.6.6",
-        "prettier": "^3.9.10",
-        "typescript": "^7.0.2"
-    },
-    "private": true,
-    "engines": {
-        "node": ">=20"
-    },
+  "name": "buhler-playwright-tests-jhl",
+  "version": "1.0.0",
+  "description": "Automated UI tests for https://www.saucedemo.com (Playwright + TypeScript)",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glass3at3r/buhler-playwright-tests-jhl.git"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "test-automation",
+    "saucedemo"
+  ],
+  "author": "Jan Hlavacek",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Glass3at3r/buhler-playwright-tests-jhl/issues"
+  },
+  "homepage": "https://github.com/Glass3at3r/buhler-playwright-tests-jhl#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
 }

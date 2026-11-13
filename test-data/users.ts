@@ -39,15 +39,13 @@ export const loginNegativeCases: LoginNegativeCase[] = [
     name: 'wrong password',
     username: standardUser.username,
     password: 'wrong_password',
-    expectedError:
-      'Epic sadface: Username and password do not match any user in this service',
+    expectedError: 'Epic sadface: Username and password do not match any user in this service',
   },
   {
     name: 'unknown user',
     username: 'unknown_user',
     password: PASSWORD,
-    expectedError:
-      'Epic sadface: Username and password do not match any user in this service',
+    expectedError: 'Epic sadface: Username and password do not match any user in this service',
   },
   {
     name: 'locked out user',

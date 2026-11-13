@@ -30,7 +30,7 @@ export default defineConfig({
     testIdAttribute: 'data-test',
 
     /* Trace is collected only when a test is retried (small overhead, rich debug info). */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
 
     /* Screenshot only for failed tests. */
     screenshot: 'only-on-failure',
