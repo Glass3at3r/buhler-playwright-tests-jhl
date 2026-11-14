@@ -57,7 +57,7 @@ export const test = base.extend<Fixtures>({
     await use(new CheckoutCompletePage(page));
   },
 
-  loggedInInventory: async ({ page, loginPage, inventoryPage }, use) => {
+  loggedInInventory: async ({ loginPage, inventoryPage }, use) => {
     await loginPage.open();
     await loginPage.login(standardUser);
     await expect(inventoryPage.inventoryItem).toHaveCount(TOTAL_PRODUCTS);

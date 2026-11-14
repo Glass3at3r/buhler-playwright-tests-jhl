@@ -17,6 +17,9 @@ test.describe('Checkout page test cases', () => {
     });
   }
 
+  /**
+   * Test of complete checkout from Checkout page to Checkout Complete Page.
+   */
   test('TS-04: Complete checkout', async ({
     checkoutPageOpened,
     checkoutOverviewPage,
@@ -31,6 +34,9 @@ test.describe('Checkout page test cases', () => {
     await expect(checkoutCompletePage.completeHeader).toHaveText(ORDER_CONFIRMATION);
   });
 
+  /**
+   * Tests that summary item subtotal, tax and total values are correct.
+   */
   test('TS-05: Order summary shows correct item total, tax and total', async ({
     checkoutPageOpened,
     checkoutOverviewPage,
@@ -47,6 +53,9 @@ test.describe('Checkout page test cases', () => {
     expect(subtotal + tax).toBeCloseTo(total, 2);
   });
 
+  /**
+   * Tests that cart is empty after completed checkout.
+   */
   test('TS-10: Cart is empty and shop is displayed after completed order', async ({
     checkoutPageOpened,
     checkoutOverviewPage,

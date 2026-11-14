@@ -4,6 +4,14 @@
 Project contains test scenarios created for automated scenario task for Buhler Prague.
 Test scenarios are sorted by test priority from high to low.
 
+**Priority rationale**
+
+- **P1 - critical path.** Without these functions the shop cannot be used or sold from: login, adding a product to the cart, completing the order and a correct order total. A failure here blocks the whole business flow, so these scenarios are tested first and on every change.
+- **P2 - important.** Negative cases and variations of the main flow: validation of the login and checkout forms, access control, cart manipulation and the state after an order. A failure does not stop the purchase for everybody, but it causes wrong data, confusion or a security gap.
+- **P3 - supporting.** Convenience and secondary functionality (sorting, product detail, closing of an error message, logout, navigation back to the shop). A failure is visible, but users can still complete their purchase.
+
+Within the same priority, the scenarios that cover more of the user flow and have the higher business impact are listed first.
+
 **Test scenarios**
 
 |  ID   | Priority | Test scenario                                                        | Test scenario type    |
@@ -20,10 +28,12 @@ Test scenarios are sorted by test priority from high to low.
 | TS-10 |    P2    | State after completed order (empty cart, back to the shop)           | positive              |
 | TS-11 |    P2    | Removing of product directly on the inventory page                   | positive              |
 | TS-12 |    P2    | Checkout with empty cart (known defect, expected failure)            | negative              |
+| TS-17 |    P2    | Proceed from the cart to the checkout form                           | positive              |
 | TS-13 |    P3    | Sorting of products (by name, by price)                              | positive              |
 | TS-14 |    P3    | Product detail shows correct data                                    | positive              |
 | TS-15 |    P3    | Login error message can be closed                                    | positive              |
 | TS-16 |    P3    | Logout successful                                                    | positive              |
+| TS-18 |    P3    | Return from the cart to the shop (Continue shopping)                 | positive              |
 
 ### TS-01 Login successful (P1, positive)
 
@@ -174,6 +184,18 @@ Test scenarios are sorted by test priority from high to low.
 
 **Known defect:** SauceDemo lets the user continue to the checkout form with an empty cart. The test describes the expected behavior and is marked `test.fail()`, so the suite stays green; when the application is fixed, the test starts failing and the mark has to be removed.
 
+### TS-17 Proceed from the cart to the checkout form (P2, positive)
+
+**Precondition:** standard_user is logged in, cart contains a product.
+**Steps:**
+
+1. Open the cart.
+2. Click "Checkout".
+   **Expected result:**
+
+- Checkout form (first name, last name, postal code) is displayed.
+- Cart badge still shows 1.
+
 ### TS-13 Sorting of products (P3, positive, data-driven)
 
 **Precondition:** standard_user is logged in, Inventory page is displayed.
@@ -218,3 +240,14 @@ Test scenarios are sorted by test priority from high to low.
    **Expected result:**
 
 - Login page is displayed.
+
+### TS-18 Return from the cart to the shop (P3, positive)
+
+**Precondition:** standard_user is logged in, cart contains a product.
+**Steps:**
+
+1. Open the cart.
+2. Click "Continue Shopping".
+   **Expected result:**
+
+- Inventory page is displayed.
